@@ -1,30 +1,9 @@
 import React from "react";
-import { FaGithub, FaLinkedin, FaEnvelope, FaAws, FaPython, FaJava, FaReact, FaNodeJs, FaDatabase } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaEnvelope, FaAws, FaPython, FaJava, FaReact, FaNodeJs, FaDatabase, FaCloud, FaRobot, FaBrain, FaCloudSunRain } from "react-icons/fa";
 import { SiTensorflow, SiMongodb, SiTailwindcss, SiJavascript } from "react-icons/si";
 import { Typewriter } from "react-simple-typewriter";
 import { motion } from "framer-motion";
-
-// Place these images in your /public folder!
-const projects = [
-  {
-    name: "Resume Agent AI",
-    desc: "NLP-powered resume analysis with OpenAI & LangChain.",
-    link: "https://github.com/bandiapoorva1/resume-agent-ai",
-    img: "/resume-agent.png"
-  },
-  {
-    name: "Disaster Relief App",
-    desc: "Decentralized PWA for emergency coordination and aid tracking.",
-    link: "https://github.com/bandiapoorva1/disaster-relief-app",
-    img: "/disaster-relief.png"
-  },
-  {
-    name: "Urban Sound Classifier",
-    desc: "CNN model trained to classify environmental sound categories.",
-    link: "https://github.com/bandiapoorva1/UrbanSoundClassifier",
-    img: "/urban-sound.png"
-  }
-];
+import Tilt from "react-parallax-tilt";
 
 const tools = [
   { name: "Python", icon: <FaPython /> },
@@ -45,37 +24,65 @@ const certificates = [
   "DeepLearning.AI: Neural Networks & Deep Learning"
 ];
 
+const projects = [
+  {
+    name: "Resume Agent AI",
+    desc: "NLP-powered resume analysis and optimization using OpenAI & LangChain. Automatically detects improvement areas and generates ATS-ready suggestions for job seekers.",
+    link: "https://github.com/bandiapoorva1/resume-agent-ai",
+    img: "/resume-agent-ai.png",
+    icon: <FaRobot className="text-purple-400" />,
+    stack: ["LangChain", "OpenAI", "React"],
+  },
+  {
+    name: "Disaster Relief App",
+    desc: "A decentralized PWA for emergency coordination and relief. Built with React, Mapbox, and Twilio, it connects volunteers and survivors in real-time during disasters.",
+    link: "https://github.com/bandiapoorva1/disaster-relief-app",
+    img: "/disaster-relief-ai-apoorva.png",
+    icon: <FaCloudSunRain className="text-blue-400" />,
+    stack: ["React", "Mapbox", "Twilio"],
+  },
+  {
+    name: "Urban Sound Classifier",
+    desc: "CNN-based classifier that recognizes environmental sounds from the UrbanSound8K dataset, helping smart cities monitor noise and pollution sources.",
+    link: "https://github.com/bandiapoorva1/UrbanSoundClassifier",
+    img: "/urban-sound-apoorva.png",
+    icon: <FaBrain className="text-indigo-400" />,
+    stack: ["TensorFlow", "CNN", "Python"],
+  },
+  {
+    name: "Autism Detection with Computer Vision",
+    desc: "Deep learning-powered computer vision tool to detect early signs of autism in children using facial image analysis and behavioral features.",
+    link: "https://github.com/bandiapoorva1/autism-detection", // replace with your real repo!
+    img: "/autism-detection-apoorva.png",
+    icon: <FaRobot className="text-pink-400" />,
+    stack: ["TensorFlow", "Computer Vision", "Python"],
+  }
+];
+
 const experience = [
   {
     title: "Graduate Research Assistant",
     org: "UTA Honors College",
     period: "June 2024 – May 2025",
-    points: [
-      "Edited 30+ student research papers for academic clarity.",
-      "Guided students in AI-based capstone development.",
-    ],
+    desc: "Led a team of 30+ students in editing and publishing research papers, and provided AI-based technical guidance for capstone projects, improving research output quality.",
   },
   {
     title: "Full-Stack Intern",
     org: "Balaji Textiles",
     period: "Jan 2023 – May 2023",
-    points: [
-      "Developed dashboard app with AWS + Tableau integration."
-    ]
+    desc: "Developed a dashboard app with AWS + Tableau integration, streamlining business analytics and inventory tracking for the organization.",
   },
   {
     title: "ML Engineer Intern",
     org: "QuadB Tech",
     period: "Aug 2022 – Dec 2022",
-    points: [
-      "Improved classification accuracy by 15% via model tuning."
-    ]
+    desc: "Enhanced classification models for industrial automation, improving accuracy by 15% through advanced hyperparameter tuning and data pipeline optimization.",
   }
 ];
 
 export default function App() {
   return (
-    <div className="min-h-screen w-full bg-[#11182a] text-white font-sans relative">
+    <div className="min-h-screen w-full bg-[#11182a] text-white font-sans relative overflow-x-hidden">
       {/* Grid Pattern */}
       <div className="absolute inset-0 bg-[radial-gradient(#334155_1px,transparent_1px)] [background-size:18px_18px] opacity-20 pointer-events-none z-0" />
 
@@ -101,12 +108,13 @@ export default function App() {
           <h1 className="text-5xl md:text-6xl font-extrabold mb-2">
             Hi, I'm Apoorva<span className="text-purple-400">.</span>
           </h1>
-          <div className="text-2xl sm:text-3xl font-semibold mb-4 mt-2 text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-500 min-h-[40px]">
+          <div className="text-2xl sm:text-3xl font-semibold mb-4 mt-2 text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-500 min-h-[40px] flex items-center gap-2">
+            <span role="img" aria-label="robot">🤖</span>
             <Typewriter
               words={[
-                "🤖 ML/AI Engineer",
-                "☁️ Cloud Developer",
-                "💻 Full-Stack Innovator"
+                "ML/AI Engineer 🧠",
+                "Cloud Developer ☁️",
+                "Full-Stack Innovator 💻",
               ]}
               loop={0}
               cursor
@@ -116,34 +124,23 @@ export default function App() {
               delaySpeed={1200}
             />
           </div>
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-            className="text-gray-400 text-lg max-w-xl mt-4 mb-6"
-          >
+          <p className="text-gray-400 text-lg max-w-xl mt-4 mb-6">
             I specialize in building scalable, intelligent systems for real-world impact.
-          </motion.p>
-          <motion.a
-            whileHover={{ scale: 1.06, boxShadow: "0 2px 12px #7c3aed" }}
+          </p>
+          <a
             href="#contact"
             className="inline-block bg-gradient-to-r from-indigo-500 to-blue-500 hover:from-indigo-600 hover:to-blue-600 text-white font-semibold px-6 py-3 rounded-full transition"
           >
             GET IN TOUCH →
-          </motion.a>
+          </a>
         </div>
-        <motion.div
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.8, type: "spring" }}
-          className="w-44 h-44 rounded-full border-4 border-purple-500 shadow-lg overflow-hidden"
-        >
+        <div className="w-44 h-44 rounded-full border-4 border-purple-500 shadow-lg overflow-hidden">
           <img
             src="/apoorva.jpeg"
             alt="Apoorva Bandi"
             className="w-full h-full object-cover"
           />
-        </motion.div>
+        </div>
       </section>
 
       {/* About */}
@@ -152,12 +149,7 @@ export default function App() {
           <h2 className="text-3xl font-bold mb-2 flex items-center gap-2">
             About <span className="text-purple-400 text-4xl">•</span>
           </h2>
-          <motion.div
-            initial={{ opacity: 0, x: -60 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-gray-200 font-light text-lg mb-4"
-          >
+          <div className="text-gray-200 font-light text-lg mb-4">
             <p>
               Hey there! I'm Apoorva, a machine learning and full-stack enthusiast specializing in building scalable, user-centric digital products.
               With experience across AI, cloud, web, and research, I craft impactful solutions with technical precision and creative vision.
@@ -165,7 +157,7 @@ export default function App() {
             <p className="mt-3">
               I'm always exploring new technologies and challenges where code meets human needs. If you want to collaborate or connect, let's talk!
             </p>
-          </motion.div>
+          </div>
         </div>
         {/* Tools & Certs */}
         <div className="flex-1 flex flex-col gap-10">
@@ -173,12 +165,7 @@ export default function App() {
             <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
               <span className="text-purple-400">{"</>"}</span> Programming & Tools
             </h3>
-            <motion.div
-              initial={{ opacity: 0, x: 60 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              className="flex flex-wrap gap-2"
-            >
+            <div className="flex flex-wrap gap-2">
               {tools.map((tool, idx) => (
                 <span
                   key={idx}
@@ -187,18 +174,13 @@ export default function App() {
                   {tool.icon} {tool.name}
                 </span>
               ))}
-            </motion.div>
+            </div>
           </div>
           <div>
             <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
               <span className="text-purple-400">📄</span> Certificates
             </h3>
-            <motion.div
-              initial={{ opacity: 0, y: 60 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7 }}
-              className="flex flex-wrap gap-2"
-            >
+            <div className="flex flex-wrap gap-2">
               {certificates.map((cert, idx) => (
                 <span
                   key={idx}
@@ -207,7 +189,7 @@ export default function App() {
                   {cert}
                 </span>
               ))}
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -218,30 +200,38 @@ export default function App() {
           Projects <span className="text-purple-400 text-4xl">•</span>
         </h2>
         <p className="text-gray-400 mb-12">Most recent works</p>
-        <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 xl:grid-cols-2 gap-8">
           {projects.map((proj, idx) => (
-            <motion.a
-              key={idx}
-              href={proj.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{
-                scale: 1.07,
-                boxShadow: "0 8px 32px rgba(103,80,255,0.22)",
-                borderColor: "#a259ff"
-              }}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 + idx * 0.1, type: "spring" }}
-              className="relative group rounded-2xl bg-[#161d30] border border-[#232e53] transition-all duration-300 p-8 flex flex-col shadow-lg"
-            >
-              <img src={proj.img} alt={proj.name} className="rounded-lg mb-6 border border-[#252c47] object-cover h-36 w-full" />
-              <h3 className="font-bold text-xl mb-3 group-hover:text-purple-400">{proj.name}</h3>
-              <p className="text-gray-300 mb-4">{proj.desc}</p>
-              <div className="absolute bottom-4 right-4 opacity-70 group-hover:opacity-100 transition">
-                <FaGithub size={22} />
-              </div>
-            </motion.a>
+            <Tilt key={idx} tiltMaxAngleX={8} tiltMaxAngleY={8} glareEnable glareMaxOpacity={0.17}>
+              <motion.a
+                href={proj.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: idx * 0.1 }}
+                className="relative group rounded-2xl bg-[#161d30] border border-[#232e53] hover:border-purple-500 transition p-8 flex flex-col shadow hover:shadow-2xl hover:-translate-y-2 duration-200 cursor-pointer"
+                style={{ minHeight: 340 }}
+              >
+                {proj.img && (
+                  <img src={proj.img} alt={proj.name} className="rounded-lg mb-6 border border-[#252c47] object-cover h-36 w-full transition-transform group-hover:scale-105" />
+                )}
+                <div className="flex items-center gap-3 mb-2">
+                  {proj.icon}
+                  <h3 className="font-bold text-xl group-hover:text-purple-400">{proj.name}</h3>
+                </div>
+                <p className="text-gray-300 mb-3">{proj.desc}</p>
+                <div className="flex flex-wrap gap-2 mt-auto">
+                  {proj.stack.map((stack, i) => (
+                    <span key={i} className="px-3 py-1 rounded-full bg-[#222d4b] text-xs text-gray-300 border border-[#282d47]">{stack}</span>
+                  ))}
+                </div>
+                {/* Hover overlay */}
+                <div className="absolute inset-0 group-hover:bg-[#6d28d9]/10 opacity-0 group-hover:opacity-100 rounded-2xl flex flex-col justify-center items-center transition-all">
+                  <span className="text-lg font-bold text-purple-200 mb-1">View Project →</span>
+                </div>
+              </motion.a>
+            </Tilt>
           ))}
         </div>
       </section>
@@ -256,23 +246,15 @@ export default function App() {
           {experience.map((exp, idx) => (
             <motion.div
               key={idx}
-              whileHover={{
-                scale: 1.04,
-                boxShadow: "0 8px 32px rgba(103,80,255,0.14)",
-                borderColor: "#a259ff"
-              }}
-              initial={{ opacity: 0, y: 60 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7 + idx * 0.1, type: "spring" }}
-              className="group rounded-2xl bg-[#161d30] border border-[#232e53] transition-all duration-300 p-8 shadow-lg"
+              transition={{ duration: 0.8, delay: idx * 0.12 }}
+              className="group rounded-2xl bg-[#161d30] border border-[#232e53] hover:border-purple-500 transition p-8 shadow hover:shadow-2xl hover:-translate-y-2 duration-200"
             >
+              <div className="w-5 h-5 rounded-full bg-purple-400 border-4 border-[#151c2e]" />
               <h3 className="font-bold text-lg mb-2 group-hover:text-purple-400">{exp.title} – {exp.org}</h3>
-              <p className="text-gray-400 italic mb-2">{exp.period}</p>
-              <ul className="list-disc ml-6 text-gray-300 text-sm space-y-1 text-left">
-                {exp.points.map((point, i) => (
-                  <li key={i}>{point}</li>
-                ))}
-              </ul>
+              <p className="text-purple-200 italic mb-2">{exp.period}</p>
+              <p className="text-gray-200 text-base">{exp.desc}</p>
             </motion.div>
           ))}
         </div>
