@@ -4,6 +4,32 @@ import { SiTensorflow, SiMongodb, SiTailwindcss, SiJavascript } from "react-icon
 import { Typewriter } from "react-simple-typewriter";
 import { motion } from "framer-motion";
 import Tilt from "react-parallax-tilt";
+import Particles from "react-tsparticles";
+import { loadFull } from "tsparticles";
+
+function ParticleBG() {
+  const particlesInit = async (main) => {
+    await loadFull(main);
+  };
+  return (
+    <Particles
+      id="tsparticles"
+      init={particlesInit}
+      options={{
+        fullScreen: { enable: true, zIndex: -20 },
+        background: { color: { value: "transparent" } },
+        particles: {
+          color: { value: "#a78bfa" },
+          links: { enable: true, color: "#818cf8", distance: 120 },
+          move: { enable: true, speed: 0.5 },
+          size: { value: 2 },
+          opacity: { value: 0.45 },
+          number: { value: 70, density: { enable: true, area: 900 } },
+        },
+      }}
+    />
+  );
+}
 
 const tools = [
   { name: "Python", icon: <FaPython /> },
@@ -83,8 +109,10 @@ const experience = [
 export default function App() {
   return (
     <div className="min-h-screen w-full bg-[#11182a] text-white font-sans relative overflow-x-hidden">
-      {/* Grid Pattern */}
-      <div className="absolute inset-0 bg-[radial-gradient(#334155_1px,transparent_1px)] [background-size:18px_18px] opacity-20 pointer-events-none z-0" />
+      {/* Animated Gradient Background */}
+      <div className="fixed inset-0 -z-10 animate-gradient bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-indigo-900 via-purple-900 to-blue-900 opacity-80"></div>
+      {/* Animated Particles */}
+      <ParticleBG />
 
       {/* Navbar */}
       <header className="relative z-10 flex justify-between items-center px-8 py-6 text-base font-semibold bg-transparent">
