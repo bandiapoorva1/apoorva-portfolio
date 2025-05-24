@@ -1,13 +1,5 @@
 import React, { useState } from "react";
-import {
-  FaGithub,
-  FaLinkedin,
-  FaEnvelope,
-  FaLaptopCode,
-  FaCodeBranch,
-  FaTools
-} from "react-icons/fa";
-
+import { FaGithub, FaLinkedin, FaEnvelope, FaLaptopCode, FaCodeBranch, FaTools } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { Typewriter } from "react-simple-typewriter";
 
@@ -112,7 +104,18 @@ const extracurriculars = [
 const App = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#0a0f1c] to-[#0f172a] text-white font-sans">
-      {/* Hero */}
+      <header className="flex justify-between items-center px-8 py-6 text-lg font-semibold bg-transparent sticky top-0 z-50 backdrop-blur-md">
+        <div className="text-2xl font-bold tracking-tight">AB<span className="text-purple-400 ml-1">•</span></div>
+        <nav className="space-x-6">
+          <a href="#about" className="hover:text-purple-400">About</a>
+          <a href="#skills" className="hover:text-purple-400">Skills</a>
+          <a href="#projects" className="hover:text-purple-400">Projects</a>
+          <a href="#experience" className="hover:text-purple-400">Experience</a>
+          <a href="#extracurriculars" className="hover:text-purple-400">Leadership</a>
+          <a href="#contact" className="hover:text-purple-400">Contact</a>
+        </nav>
+      </header>
+
       <section className="flex flex-col-reverse md:flex-row items-center justify-between px-8 py-20 gap-12 relative overflow-hidden">
         <motion.div className="flex-1 z-10" initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
           <div className="flex items-center gap-4 mb-6 text-xl">
@@ -141,7 +144,6 @@ const App = () => {
         </motion.div>
       </section>
 
-      {/* About */}
       <section id="about" className="px-8 py-20">
         <motion.h2 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="text-4xl font-bold mb-6 text-purple-400">About Me</motion.h2>
         <motion.p initial={{ x: -50, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} className="text-lg max-w-3xl text-gray-300">
@@ -149,13 +151,6 @@ const App = () => {
           I’ve contributed to impactful projects using technologies like React, TensorFlow, MongoDB, and AWS.
           I’m currently exploring AI research, design systems, and scalable cloud solutions.
         </motion.p>
-        <motion.div initial={{ scale: 0.8 }} whileInView={{ scale: 1 }} transition={{ duration: 0.6 }} className="mt-6 flex flex-wrap gap-3">
-          {skills.map((skill, index) => (
-            <span key={index} className="px-4 py-2 rounded-full bg-purple-500/20 text-sm font-medium hover:bg-purple-400 hover:text-white transition-all cursor-pointer">
-              {skill.icon} {skill.name}
-            </span>
-          ))}
-        </motion.div>
       </section>
 
       <section id="skills" className="px-8 py-24 bg-[#11182a]">
@@ -201,6 +196,23 @@ const App = () => {
               <p className="text-gray-400 italic mb-2">{exp.time}</p>
               <ul className="list-disc list-inside text-sm text-gray-300">
                 {exp.desc.map((line, i) => (
+                  <li key={i}>{line}</li>
+                ))}
+              </ul>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      <section id="extracurriculars" className="px-8 py-24 bg-[#0f172a]">
+        <h2 className="text-4xl font-bold mb-12 text-purple-400">Leadership & Activities</h2>
+        <div className="space-y-10">
+          {extracurriculars.map((activity, idx) => (
+            <motion.div key={idx} whileHover={{ scale: 1.02 }} className="bg-white/5 backdrop-blur-xl border border-purple-400/20 rounded-xl p-6 shadow-md hover:shadow-purple-500/30">
+              <h3 className="text-xl font-bold mb-1 text-white">{activity.role} – {activity.org}</h3>
+              <p className="text-gray-400 italic mb-2">{activity.time}</p>
+              <ul className="list-disc list-inside text-sm text-gray-300">
+                {activity.desc.map((line, i) => (
                   <li key={i}>{line}</li>
                 ))}
               </ul>
