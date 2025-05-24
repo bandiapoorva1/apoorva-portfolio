@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
+import {
+  FaGithub,
+  FaLinkedin,
+  FaEnvelope,
+  FaLaptopCode,
+  FaCodeBranch,
+  FaTools
+} from "react-icons/fa";
+
 import { motion } from "framer-motion";
 import { Typewriter } from "react-simple-typewriter";
 
