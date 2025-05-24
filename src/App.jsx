@@ -3,10 +3,16 @@ import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { Typewriter } from "react-simple-typewriter";
 
-const skills = [
-  "Python 🐍", "Java ☕", "JavaScript ⚡", "React ⚛️", "Node.js 🟢",
-  "TailwindCSS 🌬️", "TensorFlow 🤖", "MongoDB 🍃", "AWS ☁️"
-];
+const skills = {
+  Languages: ["Python 🐍", "Java ☕", "JavaScript ⚡"],
+  Frameworks: ["React ⚛️", "Node.js 🟢", "TailwindCSS 🌬️"],
+  Tools: ["TensorFlow 🤖", "MongoDB 🍃", "AWS ☁️"]
+};
+const skillIcons = {
+  Languages: <FaLaptopCode className="text-xl text-purple-400" />,
+  Frameworks: <FaCodeBranch className="text-xl text-purple-400" />,
+  Tools: <FaTools className="text-xl text-purple-400" />
+};
 
 const projects = [
   {
@@ -69,7 +75,10 @@ const experience = [
       "Cleaned and preprocessed large health datasets.",
       "Documented ML pipeline with visual reports."
     ]
-  },
+  }
+];
+
+const extracurriculars = [
   {
     role: "Technical Head",
     org: "Computer Society of India (CSI)",
@@ -95,8 +104,8 @@ const experience = [
 const App = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#0a0f1c] to-[#0f172a] text-white font-sans">
-        {/* Hero */}
-        <section className="flex flex-col-reverse md:flex-row items-center justify-between px-8 py-20 gap-12 relative overflow-hidden">
+      {/* Hero */}
+      <section className="flex flex-col-reverse md:flex-row items-center justify-between px-8 py-20 gap-12 relative overflow-hidden">
         <motion.div className="flex-1 z-10" initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
           <div className="flex items-center gap-4 mb-6 text-xl">
             <a href="https://linkedin.com/in/apoorvabandi" target="_blank" rel="noreferrer"><FaLinkedin /></a>
@@ -139,6 +148,26 @@ const App = () => {
             </span>
           ))}
         </motion.div>
+      </section>
+
+      <section id="skills" className="px-8 py-24 bg-[#11182a]">
+        <h2 className="text-4xl font-bold mb-12 text-purple-400">Skills</h2>
+        <div className="grid md:grid-cols-3 gap-8">
+          {Object.entries(skills).map(([category, list], idx) => (
+            <motion.div key={idx} initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: idx * 0.2 }}>
+              <h3 className="text-xl font-semibold mb-4 flex items-center gap-2 text-purple-300">
+                {skillIcons[category]} {category}
+              </h3>
+              <ul className="space-y-2 text-gray-300">
+                {list.map((item, i) => (
+                  <li key={i} className="bg-[#1e293b] px-4 py-2 rounded-md shadow hover:shadow-purple-400 hover:bg-purple-500 hover:text-white transition cursor-pointer">
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          ))}
+        </div>
       </section>
 
       <section id="projects" className="px-8 py-24">
